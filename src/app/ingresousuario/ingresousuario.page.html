@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="header-title">Ingreso de Usuario1</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="custom-background">
+  <div class="welcome-container">
+    <h2 class="welcome-text">¡Bienvenido!</h2>
+  </div>
+  <div class="profile-container">
+    <img src="assets/images.png" class="profile-image">
+  </div>
+
+  <ion-card class="login-card">
+    <ion-item class="custom-item">
+      <ion-input type="text" [(ngModel)]="nombre" placeholder="Nombre" class="custom-input"></ion-input>
+    </ion-item>
+
+    <ion-item class="custom-item">
+      <ion-input type="password" [(ngModel)]="clave" placeholder="Clave" class="custom-input"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" color="primary" class="custom-button" (click)="ingresar()">
+      Ingresar
+      <ion-icon slot="end" name="enter"></ion-icon>
+    </ion-button>
+
+    <ion-button expand="block" color="danger" class="custom-button-outline" fill="outline" (click)="restablecerclave()">
+      Restablecer Contraseña
+      <ion-icon slot="end" name="create"></ion-icon>
+    </ion-button>
+  </ion-card>
+</ion-content>

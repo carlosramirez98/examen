@@ -1,0 +1,41 @@
+.custom-label {
+    font-size: 24px;         
+    text-align: center;      
+    display: block;          
+    margin: 0 auto;          
+  }
+
+  //Contenedor de la imagen para centrarla 
+  .profile-container {
+    display: flex;
+    justify-content: center;   
+    align-items: center;       
+    margin-top: 20px;          
+    height: 200px;             
+  }
+
+  //Imagen circular más pequeña 
+  .profile-image {
+    width: 170px;               
+    height: 170px;              
+    border-radius: 50%;        
+    border: 2px solid #fff;    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  }
+
+  label{
+    color: rgb(0, 0, 0);
+     }
+
+     ion-item:hover {
+      --background: rgb(255, 218, 114);
+    }
+
+    body {
+      background-color: black;
+    }
+
+    ion-toolbar {
+      --background: #000a29; 
+      --color: #ffffff;      
+    }

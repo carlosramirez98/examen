@@ -1,0 +1,69 @@
+{
+  "usuarios": [
+    {
+      "id": "1",
+      "username": "usuario1",
+      "password": "123456",
+      "nombre": "Juan Pérez",
+      "role": "alumno"
+    },
+    {
+      "id": "2",
+      "username": "docente1",
+      "password": "123456",
+      "nombre": "María González",
+      "role": "docente"
+    }
+  ],
+  "asignaturas": [
+    {
+      "id": "1",
+      "nombre": "Programación movil",
+      "seccion": "PGY4121",
+      "docenteId": "2",
+      "codigoqr": "miercoles 13 de noviembre de 2024"
+    },
+    {
+      "id": "2",
+      "nombre": "base de datos",
+      "seccion": "PGY4122",
+      "docenteId": "2",
+      "codigoqr": "miercoles 13 de noviembre de 2024"
+    },
+    {
+      "id": "3",
+      "nombre": "arquitectura",
+      "seccion": "PGY4123",
+      "docenteId": "2",
+      "codigoqr": "miercoles 13 de noviembre de 2024"
+    }
+  ],
+  "asignaturasInscritas": [
+    {
+      "id": "1",
+      "asignaturaId": "1",
+      "alumnoId": "1"
+    }
+  ],
+  "asistencias": [
+    {
+      "id": "1",
+      "asignaturaId": "1",
+      "alumnoId": "1",
+      "fecha": "2024-11-02",
+      "hora": "08:30",
+      "codigoQR": "QR1",
+      "confirmada": true
+    }
+  ],
+  "sesiones": [
+    {
+      "id": "1",
+      "asignaturaId": "1",
+      "docenteId": "2",
+      "fecha": "2024-11-02",
+      "codigoQR": "QR1",
+      "activa": true
+    }
+  ]
+}

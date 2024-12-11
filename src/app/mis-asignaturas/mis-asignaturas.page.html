@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="color: darkorange;">Mis asignaturas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<br>
+<ion-accordion-group>
+  <ion-accordion value="first">
+    <ion-item slot="header" color="light">
+      <ion-label>Programacion Movil</ion-label>
+    </ion-item>
+    <div *ngFor="let asignatura of asignaturas"
+    class="ion-padding" slot="content" style="padding: 0; margin: 15px;"> {{ asignatura.seccion1}}</div>
+  </ion-accordion>
+  <ion-accordion value="second">
+    <ion-item slot="header" color="light">
+      <ion-label>Base de Datos</ion-label>
+    </ion-item>
+    <div *ngFor="let asignatura of asignaturas"
+    class="ion-padding" slot="content" style="padding: 0; margin: 15px;"> {{ asignatura.seccion2}}</div>
+  </ion-accordion>
+  <ion-accordion value="third">
+    <ion-item slot="header" color="light">
+      <ion-label>Arquitectura</ion-label>
+    </ion-item>
+    <div *ngFor="let asignatura of asignaturas"
+     class="ion-padding" slot="content" style="padding: 0; margin: 15px;">{{ asignatura.seccion3}}</div>
+  </ion-accordion>
+</ion-accordion-group>
+
+</ion-content>
+
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title style="color: darkorange;">Menu</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

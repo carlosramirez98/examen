@@ -1,0 +1,53 @@
+
+ion-toolbar {
+    --background: #000a29; 
+    --color: #ffffff;      
+  }
+
+.custom-background {
+  --background: linear-gradient(135deg, #f0f0f0, #ffffff);
+}
+
+.custom-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 24px;
+}
+
+.custom-item {
+  --background: transparent;
+  margin-bottom: 12px;
+  --highlight-background: transparent;
+  --padding-start: 0;
+}
+
+.custom-input {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px; 
+  font-size: 16px;
+  height: auto;
+
+}
+
+ion-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.custom-button {
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  color: white;
+  padding: 12px;
+
+}
+
+.custom-button:hover {
+  background: #9e5f01, #e0a800;
+}

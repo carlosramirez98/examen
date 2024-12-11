@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="color: darkorange;">Registro de Asistencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center">
+  <div>
+    <img src="assets/images/scan-qr.webp" alt="Escanear QR">
+
+    <h6 class="scan-label">Escanea o selecciona una imagen con un código QR</h6>
+
+    <ion-button (click)="startScan()" class="submit" expand="block">
+      Escanea
+      <ion-icon slot="end" name="scan-outline"></ion-icon>
+    </ion-button>
+
+    <ion-input type="text" [value]="scanResult" placeholder="Resultado del escaneo"></ion-input>
+
+    <ion-button (click)="registrarAsistencia()" expand="block" color="success">
+      Registrar
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title style="color: darkorange;">Menu</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

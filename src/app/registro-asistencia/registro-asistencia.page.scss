@@ -1,0 +1,23 @@
+ion-toolbar {
+    --background: #000a29;
+    --color: #ffffff;
+  }
+
+  ion-item {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+
+    ion-label.progra {
+      width: 100%;
+      text-align: left;
+      white-space: normal; /* Permite el texto en múltiples líneas si es necesario */
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .segment-content ion-accordion-group {
+    width: 100%;
+  }

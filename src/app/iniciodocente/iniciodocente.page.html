@@ -1,0 +1,42 @@
+
+<ion-header [translucent]="true" >
+  <ion-toolbar style="color: rgb(255, 255, 255);">
+    <ion-title>Pagina de inicio</ion-title>
+    <ion-buttons slot="end">
+      <ion-button style="color: rgb(255, 255, 255);" (click)="cerrarSesion()">Cerrar sesión</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <br><br><br>
+  <ion-label class="custom-label" >¡Bienvenido {{ nombreDocente }}!</ion-label>
+  <div class="profile-container">
+    <img src="assets/images.png" class="profile-image">
+  </div>
+  <ion-list>
+    <ion-list-header color="warning">
+      <ion-icon name="menu-outline"></ion-icon>Menu
+    </ion-list-header>
+    <ion-item>
+      <ion-icon name="book-outline"></ion-icon>
+      <ion-router-link routerLink="/asignaturasdocente"><label>asignaturas</label></ion-router-link>
+    </ion-item>
+
+    <!-- <ion-item>
+   <ion-icon name="calendar-outline"></ion-icon>
+     <ion-router-link routerLink="/qrdocente"><label>Qr asistencia</label></ion-router-link>
+    </ion-item>
+    -->
+
+
+    <ion-item>
+      <ion-icon name="create-outline"></ion-icon>
+      <ion-router-link routerLink="/cambiarclave"><label>Cambiar clave</label></ion-router-link>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+
+
+
+

@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="color: darkorange; font-weight: bold; font-size: 24px;">Cambiar Clave</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="custom-background">
+  <ion-card class="custom-card">
+    <ion-item class="custom-item">
+      <ion-label position="stacked">Clave Actual</ion-label>
+      <ion-input type="password" [(ngModel)]="claveActual" class="custom-input"></ion-input>
+    </ion-item>
+
+    <ion-item class="custom-item">
+      <ion-label position="stacked">Nueva Clave</ion-label>
+      <ion-input type="password" [(ngModel)]="nuevaClave" class="custom-input"></ion-input>
+    </ion-item>
+
+    <ion-item class="custom-item">
+      <ion-label position="stacked">Confirmar Nueva Clave</ion-label>
+      <ion-input type="password" [(ngModel)]="confirmarClave" class="custom-input"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" color="warning" class="custom-button" (click)="cambiarClave()">Cambiar Clave</ion-button>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title style="color: darkorange;">Menu</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
