@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./iniciodocente.page.scss'],
 })
 export class IniciodocentePage implements OnInit {
-  nombreDocente= 'Docente1';
+  nombreDocente= 'Docente';
 
   constructor(private router: Router) { }
 

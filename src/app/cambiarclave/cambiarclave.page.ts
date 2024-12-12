@@ -26,17 +26,17 @@ export class CambiarclavePage implements OnInit {
         this.router.navigate(['/ingresousuario']);
       }
     }
-  
+
     async cambiarClave() {
       if (!this.usuarioActual) {
         await this.mostrarAlerta('No hay sesión activa');
         return;
       }
-  
+
       if (!this.validarEntradas()) {
         return;
       }
-  
+
       this.crudService.verificarContraseña(this.usuarioActual.username, this.claveActual)
         .subscribe({
           next: async (usuario) => {
@@ -44,7 +44,7 @@ export class CambiarclavePage implements OnInit {
               await this.mostrarAlerta('La clave actual no es correcta');
               return;
             }
-  
+
             this.crudService.actualizarContraseña(usuario.id, this.nuevaClave)
               .subscribe({
                 next: async () => {
@@ -63,43 +63,53 @@ export class CambiarclavePage implements OnInit {
           }
         });
     }
-  
+
     private validarEntradas(): boolean {
       if (!this.claveActual || !this.nuevaClave || !this.confirmarClave) {
         this.mostrarAlerta('Por favor, complete todos los campos');
         return false;
       }
-  
+
       if (this.nuevaClave.length < 6) {
         this.mostrarAlerta('La nueva clave debe tener al menos 6 caracteres');
         return false;
       }
-  
+
       if (this.nuevaClave !== this.confirmarClave) {
         this.mostrarAlerta('Las claves no coinciden');
         return false;
       }
-  
+
       if (this.nuevaClave === this.claveActual) {
         this.mostrarAlerta('La nueva clave debe ser diferente a la actual');
         return false;
       }
-  
+
       return true;
     }
-  
+
     private limpiarFormulario() {
       this.claveActual = '';
       this.nuevaClave = '';
       this.confirmarClave = '';
     }
-  
+
     private async mostrarAlerta(mensaje: string) {
       const alert = await this.alertController.create({
         header: 'Información',
         message: mensaje,
-        buttons: ['OK']
+        buttons: [
+          {
+            text: 'Cerrra sesion',
+            handler: () => {
+              this.cerrarSesion();
+            }
+          }
+        ]
       });
       await alert.present();
+    }
+    cerrarSesion() {
+      this.router.navigate(['/ingresousuario']);
     }
   }

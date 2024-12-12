@@ -11,8 +11,8 @@ describe('IniciodocentePage', () => {
     await TestBed.configureTestingModule({
       declarations: [IniciodocentePage],
       imports: [
-        HttpClientModule,   // Necesario para peticiones HTTP
-        IonicModule.forRoot(), // Para componentes de Ionic
+        HttpClientModule,
+        IonicModule.forRoot(),
       ],
     }).compileComponents();
 

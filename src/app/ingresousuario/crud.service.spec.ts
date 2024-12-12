@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CrudService, Usuario } from './crud.service'; // Asegúrate de que Usuario esté exportado
+import { CrudService, Usuario } from './crud.service';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { of } from 'rxjs';
@@ -67,20 +67,20 @@ describe('CrudService', () => {
   });
 
   it('Verificar que se obtienen las asignaturas', () => {
-    spyOn(service, 'getAsignaturas').and.returnValue(of([{ id: 1, name: 'Mathematics' }])); // Simula respuesta de asignaturas
+    spyOn(service, 'getAsignaturas').and.returnValue(of([{ id: 1, name: 'Arquitectura' }]));
     service.getAsignaturas().subscribe(asignaturas => {
       expect(asignaturas.length).toBeGreaterThan(0);
-      expect(asignaturas[0].name).toEqual('Mathematics');
+      expect(asignaturas[0].name).toEqual('Arquitectura');
     });
   });
 
   it('Verificar registrar asistencia correctamente', () => {
-    const asistencia = { fechaHora: '2024-11-27T10:00:00', clase: 'Math', estado: 'present' };
+    const asistencia = { fechaHora: '2024-11-27T10:00:00', clase: 'Arc', estado: 'present' };
     const mockResponse = { fechaHora: asistencia.fechaHora, clase: asistencia.clase, estado: asistencia.estado };
 
     spyOn(service, 'registrarAsistencia').and.returnValue(of(mockResponse));
 
-    service.registrarAsistencia('2024-11-27T10:00:00', 'Math', 'present').subscribe(response => {
+    service.registrarAsistencia('2024-11-27T10:00:00', 'Arc', 'present').subscribe(response => {
       expect(response.fechaHora).toEqual(asistencia.fechaHora);
       expect(response.clase).toEqual(asistencia.clase);
     });

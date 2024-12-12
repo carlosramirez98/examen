@@ -23,8 +23,6 @@ export interface UsuarioActual {
 })
 export class CrudService {
   private apiUrl = 'http://192.168.100.12:3001';
-  private usuariosDemo: Usuario[] = [
-      ];
 
   private storage: Storage | null = null;
 
@@ -86,47 +84,30 @@ export class CrudService {
   }
 
   verificarContraseña(username: string, password: string): Observable<Usuario | undefined> {
-    if (this.isMobile()) {
-      return of(this.usuariosDemo).pipe(
-        map(usuarios => usuarios.find(u =>
-          u.username === username && u.password === password
-        ))
-      );
-    } else {
-      return this.http.get<Usuario[]>(`${this.apiUrl}/usuarios`).pipe(
-        map(usuarios => usuarios.find(u =>
-          u.username === username && u.password === password
-        ))
-      );
-    }
+    return this.http.get<Usuario[]>(`${this.apiUrl}/usuarios`).pipe(
+      map(usuarios => usuarios.find(u =>
+        u.username === username && u.password === password
+      ))
+    );
   }
 
   actualizarContraseña(userId: string, nuevaContraseña: string): Observable<Usuario> {
-    if (this.isMobile()) {
-      const usuario = this.usuariosDemo.find(u => u.id === userId);
-      if (!usuario) {
-        throw new Error('Usuario no encontrado');
-      }
-      usuario.password = nuevaContraseña;
-      return of(usuario);
-    } else {
-      return this.http.get<Usuario[]>(`${this.apiUrl}/usuarios`).pipe(
-        switchMap(usuarios => {
-          const usuario = usuarios.find(u => u.id === userId);
-          if (!usuario) {
-            throw new Error('Usuario no encontrado');
-          }
-          const usuarioActualizado = {
-            ...usuario,
-            password: nuevaContraseña
-          };
-          return this.http.put<Usuario>(
-            `${this.apiUrl}/usuarios/${userId}`,
-            usuarioActualizado
-          );
-        })
-      );
-    }
+    return this.http.get<Usuario[]>(`${this.apiUrl}/usuarios`).pipe(
+      switchMap(usuarios => {
+        const usuario = usuarios.find(u => u.id === userId);
+        if (!usuario) {
+          throw new Error('Usuario no encontrado');
+        }
+        const usuarioActualizado = {
+          ...usuario,
+          password: nuevaContraseña
+        };
+        return this.http.put<Usuario>(
+          `${this.apiUrl}/usuarios/${userId}`,
+          usuarioActualizado
+        );
+      })
+    );
   }
 
   obtenerUsuarioActual(): UsuarioActual | null {

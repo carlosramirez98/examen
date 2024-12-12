@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CambiarclavePage } from './cambiarclave.page';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'; // Si usa formularios en la página
+import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage-angular';
 describe('CambiarclavePage', () => {
@@ -10,14 +10,14 @@ describe('CambiarclavePage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CambiarclavePage], // Declara el componente a probar
+      declarations: [CambiarclavePage],
       imports: [
-        HttpClientModule, // Necesario para peticiones HTTP
-        FormsModule,     // Si se usan formularios en el componente
+        HttpClientModule,
+        FormsModule,
         IonicModule.forRoot(),
-        IonicStorageModule.forRoot(), // Para componentes de Ionic
+        IonicStorageModule.forRoot(),
       ],
-    }).compileComponents(); // Compila el módulo de prueba
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CambiarclavePage);
     component = fixture.componentInstance;

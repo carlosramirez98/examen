@@ -5,15 +5,16 @@ import { BarcodeScanner, LensFacing } from '@capacitor-mlkit/barcode-scanning';
 import { CrudService } from '../ingresousuario/crud.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-registro-asistencia',
   templateUrl: './registro-asistencia.page.html',
   styleUrls: ['./registro-asistencia.page.scss'],
 })
 export class RegistroAsistenciaPage implements OnInit {
-  scanResult = ''; // Resultado del escaneo QR
+  scanResult = '';
   registroGuardado = '';
+  usuarioActual: any;
+  asignaturas: any[] = [];
 
   constructor(
     private modalController: ModalController,
@@ -23,12 +24,20 @@ export class RegistroAsistenciaPage implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     if (this.platform.is('capacitor')) {
       BarcodeScanner.isSupported().then();
       BarcodeScanner.checkPermissions().then();
       BarcodeScanner.removeAllListeners();
     }
+
+
+    this.usuarioActual = this.crudService.obtenerUsuarioActual();
+
+
+    this.crudService.getAsignaturas().subscribe(
+      asignaturas => this.asignaturas = asignaturas
+    );
   }
 
   async startScan() {
@@ -51,38 +60,68 @@ export class RegistroAsistenciaPage implements OnInit {
     }
   }
 
+  getCurrentDate(): string {
+    return new Date().toLocaleDateString('es-ES', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+  }
+
   async registrarAsistencia() {
-    if (this.scanResult) {
-        const fechaActual = new Date().toLocaleDateString('es-ES', {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        });
-
-        let nuevaAsistencia = { fecha: fechaActual, asistencia: "Presente, " + this.scanResult };
-
-        let listaAsistencia = '';
-        if (this.scanResult.includes("miercoles 13 de noviembre de 2024")) {
-          this.router.navigate(['mi-asistencia', {int: this.scanResult}]);
-        } else if (this.scanResult.includes("miercoles 13 de noviembre de 2024")) {
-          this.router.navigate(['mi-asistencia', {int: this.scanResult}]);
-        } else if (this.scanResult.includes("miercoles 13 de noviembre de 2024")) {
-          this.router.navigate(['mi-asistencia', {int: this.scanResult}]);
-        } else {
-            const alert = await this.alertController.create({
-                header: 'Error',
-                message: 'Asignatura no reconocida en el QR.',
-                buttons: ['OK']
-            });
-            await alert.present();
-            return;
-        }
-
-        await this.crudService.agregarAsistencia(listaAsistencia, nuevaAsistencia);
-
-        this.registroGuardado = `registrado como ${nuevaAsistencia.asistencia}`;
-        this.scanResult = '';
+    if (!this.scanResult) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Por favor, escanee un código QR primero.',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
     }
-}
+
+
+    const asignaturaEscaneada = this.asignaturas.find(
+      a => a.codigoqr === this.scanResult
+    );
+
+    if (!asignaturaEscaneada) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Asignatura no reconocida en el QR.',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
+
+
+    if (asignaturaEscaneada.seccion !== "seccion 1") {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Solo puedes registrar asistencia en la sección 1.',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
+
+    const fechaActual = this.getCurrentDate();
+
+    this.router.navigate(['mi-asistencia', {
+      int: `Presente, ${fechaActual}`,
+      asignatura: asignaturaEscaneada.nombre
+    }]);
+
+    const nuevaAsistencia = {
+      fecha: fechaActual,
+      asistencia: `Presente, ${fechaActual}`,
+      asignatura: asignaturaEscaneada.nombre
+    };
+
+    await this.crudService.agregarAsistencia('asistencias', nuevaAsistencia);
+
+    this.registroGuardado = `registrado como ${nuevaAsistencia.asistencia}`;
+    this.scanResult = '';
+  }
 }

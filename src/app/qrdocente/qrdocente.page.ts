@@ -17,9 +17,8 @@ export class QrdocentePage {
   ngOnInit() {
     const asignaturaId = this.route.snapshot.paramMap.get('id');
 
-    // Obtener las asignaturas del servicio
     this.crudService.getAsignaturas().subscribe(asignaturas => {
-      // Buscar la asignatura seleccionada
+
       this.asignaturaSeleccionada = asignaturas.find(asignatura => asignatura.id === asignaturaId);
     });
   }

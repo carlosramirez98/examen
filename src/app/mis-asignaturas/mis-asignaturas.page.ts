@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class MisAsignaturasPage implements OnInit {
 
   asignaturas = [
-    {nombre: "Programacion Movil", seccion1: "PGY4121"},
-    {nombre: "Base de datos", seccion2: "INI5111"},
-    {nombre: "Arquitectura", seccion3: "CSY4111"},
+    {nombre: "Programacion Movil", seccion1: "seccion 1"},
+    {nombre: "Base de datos", seccion2: "seccion 1"},
+    {nombre: "Arquitectura", seccion3: "seccion 1"},
   ]
 
   constructor() { }

@@ -18,7 +18,7 @@ describe('MiAsistenciaPage', () => {
           useValue: {
             snapshot: {
               paramMap: {
-                get: (key: string) => 'test-value', // Simula valores para los parámetros
+                get: (key: string) => 'test-value',
               },
             },
           },
